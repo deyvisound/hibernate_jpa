@@ -1,0 +1,16 @@
+
+Como Funciona a Arquitetura:
+
+-> Acima do banco de dados terá a camada de software chamada DAO
+
+DAO => Design Patterns
+
+-> Acima do DAO fica uma camada de Lógica  
+
+
+@inject => Injeção de dependências com CDI
+
+
+Lá no persistence.xml, na unidade de persistencia, existe um atributo chamado: transaction-type
+Este aributo informa se eu quero controlar minhas tranzações(RESOURCE_LOCAL) 
+ou se eu quero que o java às controle(JTA=JavaTransactionAPI). 

@@ -1,0 +1,29 @@
+
+Precisamos de transações para realizar qualquer tipo de alteração no banco de dados. 
+
+
+Uma transação precisa ter atomicidade(Iniciar e Terminar), ou tudo é salvo ou nada é salvo. 
+Deve ser consistente 
+Deve ser Isolada(Não deve interferir noutras transações)
+
+Begin => Inicia a transação 
+	Commit => Finaliza as alterações(Deu certo)
+	Rollback => Desfaz tudo que foi feito anteriormente(Deu errado)
+	
+
+JPQL => 
+	Trabalha a nível de objeto
+	Existe uma Subdivisão: 
+		Dynamic Query
+		Named Query
+		
+Normalmente, em aplicações HTML, o entityManager é fechado por requisições 
+
+O metodo em.MERGE() adiciona o objeto ao entityManager em questão.    
+
+
+-> 
+
+
+
+
