@@ -1,6 +1,7 @@
 package com.algaworks.curso.jpa2.controller;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ViewScoped;
@@ -22,6 +23,8 @@ public class FabricanteBean implements Serializable {
 	
 	private Fabricante fabricante;
 	
+	private Fabricante fabricanteSelecionado;
+	
 	@PostConstruct
 	public void init() {
 		this.limpar();
@@ -39,11 +42,25 @@ public class FabricanteBean implements Serializable {
 		this.fabricante = fabricante;
 	}
 	
+
+	public Fabricante getFabricanteSelecionado() {
+		return fabricanteSelecionado;
+	}
+
+	public void setFabricanteSelecionado(Fabricante fabricanteSelecionado) {
+		this.fabricanteSelecionado = fabricanteSelecionado;
+	}
 	
 	public void salvar() {
 		try {
-			this.fabricanteSev.salvar(fabricante);
-			FacesUtil.addSuccessMessage("Fabricante Salvo com Sucesso!"); 
+			if(fabricante.getCodigo() == null) {
+				this.fabricanteSev.salvar(fabricante);
+				FacesUtil.addSuccessMessage("Fabricante Salvo com Sucesso!");
+			}else {				
+				this.fabricanteSev.atualizar(fabricante);
+				FacesUtil.addSuccessMessage("Fabricante atualizado com Sucesso!");
+			}
+			 
 			
 			this.limpar();
 		} catch (NegocioException e) {
@@ -52,4 +69,22 @@ public class FabricanteBean implements Serializable {
 			FacesUtil.addErrorMessage(e.getMessage());
 		}
 	}
+	
+	public void excluir() {
+		try {
+			this.fabricanteSev.excluir(fabricanteSelecionado);
+			FacesUtil.addSuccessMessage("Fabricante excluído com Sucesso!"); 
+			
+			this.limpar();
+		} catch (NegocioException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			FacesUtil.addErrorMessage(e.getMessage());
+		}
+	}
+	
+	public List<Fabricante> getAllFabricantes() {
+		return this.fabricanteSev.buscarTodos();		
+	}
+	
 }

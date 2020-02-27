@@ -1,12 +1,12 @@
 package com.algaworks.curso.jpa2.service;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.inject.Inject;
 
 import com.algaworks.curso.jpa2.dao.FabricanteDao;
 import com.algaworks.curso.jpa2.modelo.Fabricante;
-import com.algaworks.curso.jpa2.util.jpa.Transactional;
 
 public class FabricanteService implements Serializable {
 
@@ -14,14 +14,11 @@ public class FabricanteService implements Serializable {
 
 	@Inject
 	private FabricanteDao fabricanteDao;
-
-	// Notação criada nas classes UTIL
-	@Transactional
+	
 	public void salvar(Fabricante fabricante) throws NegocioException {
 		this.validateCadastro(fabricante);
 
 		this.fabricanteDao.salvar(fabricante);
-
 	}
 
 	private void validateCadastro(Fabricante fabricante) throws NegocioException {
@@ -30,5 +27,23 @@ public class FabricanteService implements Serializable {
 			throw new NegocioException("O nome do fabricante não pode ser nulo!");
 		}
 
+	}
+
+	public List<Fabricante> buscarTodos() {
+		return fabricanteDao.buscarTodos();
+	}
+
+	public void excluir(Fabricante fabricante) throws NegocioException {	
+		try {
+			this.fabricanteDao.excluir(fabricante);
+		}catch (Exception e) {
+			throw new NegocioException("Falha ao excluir Fabricante: " + e.getMessage());
+		}		
+	}
+
+	public void atualizar(Fabricante fabricante) throws NegocioException {
+		this.validateCadastro(fabricante);
+
+		this.fabricanteDao.atualizar(fabricante);		
 	}
 }

@@ -13,4 +13,5 @@ DAO => Design Patterns
 
 Lá no persistence.xml, na unidade de persistencia, existe um atributo chamado: transaction-type
 Este aributo informa se eu quero controlar minhas tranzações(RESOURCE_LOCAL) 
-ou se eu quero que o java às controle(JTA=JavaTransactionAPI). 
+ou se eu quero que o java às controle(JTA=JavaTransactionAPI).
+

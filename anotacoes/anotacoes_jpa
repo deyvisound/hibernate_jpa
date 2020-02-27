@@ -22,7 +22,20 @@ Normalmente, em aplicações HTML, o entityManager é fechado por requisições
 O metodo em.MERGE() adiciona o objeto ao entityManager em questão.    
 
 
--> 
+-> O método em.FLUSH() "dá vasão" as alterações realizadas na transação,  
+
+Existem 4 formas de geração de Chave Primária no hibernate: 
+
+IDENTITY: 
+	Existem bancos que suportam o autoIncrement
+
+SEQUENCE: 
+	Alguns bancos também suportam sequences
+
+TABLE:
+
+AUTO:
+	O JPA irá escolher qual a melhor forma de geração de pk's. 
 
 
 
