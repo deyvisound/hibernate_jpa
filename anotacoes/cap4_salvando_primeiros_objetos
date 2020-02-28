@@ -15,3 +15,8 @@ Lá no persistence.xml, na unidade de persistencia, existe um atributo chamado: 
 Este aributo informa se eu quero controlar minhas tranzações(RESOURCE_LOCAL) 
 ou se eu quero que o java às controle(JTA=JavaTransactionAPI).
 
+
+Partindo da entidade ModeloCarro, definimos a notação @ManyToOne no atributo fabricante. 
+Deste forma estamos informando ao sistema que vários modelos podem está ligados a um mesmo fabricante.
+
+O converter precisa que a entidade esteja com o equals e o hashcode implementados, referenciando a chave primária. 

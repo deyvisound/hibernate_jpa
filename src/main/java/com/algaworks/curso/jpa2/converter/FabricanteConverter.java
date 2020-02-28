@@ -28,8 +28,11 @@ public class FabricanteConverter implements Converter {
 
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
-		// TODO Auto-generated method stub
-		return null;
+		if (value != null) {
+			Long codigo = ((Fabricante) value).getCodigo();
+			return codigo == null ? null : codigo.toString();
+		}
+		return "";
 	}
 
 }
