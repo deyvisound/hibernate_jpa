@@ -13,10 +13,12 @@ import com.algaworks.curso.jpa2.util.jpa.Transactional;
 
 public class ModeloCarroDAO implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	@Inject
 	private EntityManager manager;
 	
-	public ModeloCarro buscarPeloCodigo(Long codigo) {
+	public ModeloCarro findByCodigo(Long codigo) {
 		return manager.find(ModeloCarro.class, codigo);
 	}
 	
@@ -24,13 +26,15 @@ public class ModeloCarroDAO implements Serializable {
 		manager.merge(modeloCarro);
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<ModeloCarro> buscarTodos() {
-		return manager.createQuery("from ModeloCarro").getResultList();
+		String qlString = "from ModeloCarro";
+		return manager.createQuery(qlString).getResultList();
 	}
 	
 	@Transactional
 	public void excluir(ModeloCarro modeloCarro) throws NegocioException {
-		modeloCarro = buscarPeloCodigo(modeloCarro.getCodigo());
+		modeloCarro = findByCodigo(modeloCarro.getCodigo());
 		try {
 			manager.remove(modeloCarro);
 			manager.flush();
