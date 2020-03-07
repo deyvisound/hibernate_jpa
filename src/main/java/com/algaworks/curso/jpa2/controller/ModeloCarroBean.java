@@ -8,7 +8,7 @@ import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.algaworks.curso.jpa2.dao.FabricanteDao;
+import com.algaworks.curso.jpa2.dao.FabricanteDAO;
 import com.algaworks.curso.jpa2.modelo.Fabricante;
 import com.algaworks.curso.jpa2.modelo.ModeloCarro;
 import com.algaworks.curso.jpa2.service.ModeloCarroService;
@@ -30,7 +30,7 @@ public class ModeloCarroBean implements Serializable {
 	private ModeloCarroService cadastroModeloCarroService;
 	
 	@Inject
-	private FabricanteDao fabricanteDAO;
+	private FabricanteDAO fabricanteDAO;
 	
 	public void salvar() {
 		try {

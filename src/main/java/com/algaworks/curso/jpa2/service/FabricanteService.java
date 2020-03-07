@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import com.algaworks.curso.jpa2.dao.FabricanteDao;
+import com.algaworks.curso.jpa2.dao.FabricanteDAO;
 import com.algaworks.curso.jpa2.modelo.Fabricante;
 
 public class FabricanteService implements Serializable {
@@ -13,7 +13,7 @@ public class FabricanteService implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private FabricanteDao fabricanteDao;
+	private FabricanteDAO fabricanteDao;
 	
 	public void salvar(Fabricante fabricante) throws NegocioException {
 		this.validateCadastro(fabricante);

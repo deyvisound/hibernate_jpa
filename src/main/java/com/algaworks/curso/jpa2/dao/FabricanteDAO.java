@@ -10,7 +10,7 @@ import com.algaworks.curso.jpa2.modelo.Fabricante;
 import com.algaworks.curso.jpa2.util.jpa.Transactional;
 
 //o Serializable é utilizado pelo JSF
-public class FabricanteDao implements Serializable {
+public class FabricanteDAO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
