@@ -16,13 +16,20 @@ public class CarroService implements Serializable {
 	private CarroDAO carroDAO;
 	
 	@Transactional
-	public void salvar(Carro carro) throws NegocioException {
-		
+	public void salvar(Carro carro) throws NegocioException {		
+		this.validate(carro);				
+		this.carroDAO.salvar(carro);
+	}
+
+	@Transactional
+	public void excluir(Carro carro) {
+		this.carroDAO.excluir(carro);		
+	}
+	
+	private void validate(Carro carro) throws NegocioException {
 		if (carro.getPlaca() == null || carro.getPlaca().trim().equals("")) {
 			throw new NegocioException("A placa é obrigatória");
 		}
-		
-		this.carroDAO.salvar(carro);
 	}
 
 }

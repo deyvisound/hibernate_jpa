@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.algaworks.curso.jpa2.dao.AcessorioDAO;
+import com.algaworks.curso.jpa2.dao.CarroDAO;
 import com.algaworks.curso.jpa2.dao.ModeloCarroDAO;
 import com.algaworks.curso.jpa2.modelo.Acessorio;
 import com.algaworks.curso.jpa2.modelo.Carro;
@@ -30,8 +31,12 @@ public class CarroBean implements Serializable {
 	
 	private List<Acessorio> acessorios;
 	
+	private List<Carro> carros;
+	
+	private Carro carroSelecionado;
+	
 	@Inject
-	private CarroService cadastroCarroService;
+	private CarroService carroService;
 	
 	@Inject
 	private AcessorioDAO acessorioDAO;
@@ -39,20 +44,36 @@ public class CarroBean implements Serializable {
 	@Inject
 	private ModeloCarroDAO modeloCarroDAO;
 	
+	@Inject
+	private CarroDAO carroDao;
+	
 	@PostConstruct
 	public void inicializar() {
 		this.limpar();
 		
 		this.acessorios = acessorioDAO.buscarTodos();
 		this.modelosCarros = this.modeloCarroDAO.buscarTodos();
+		this.setCarros(this.carroDao.buscarTodos());
 	}
 	
 	public void salvar() {
 		try {
-			this.cadastroCarroService.salvar(carro);
+			this.carroService.salvar(carro);
 			FacesUtil.addSuccessMessage("Carro salvo com sucesso!");
 		} catch (NegocioException e) {
 			FacesUtil.addErrorMessage(e.getMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
+			FacesUtil.addErrorMessage("Erro desconhecido. Contatar o administrador");
+		}
+		
+		this.limpar();
+	}
+	
+	public void excluir() {
+		try {
+			this.carroService.excluir(carroSelecionado);
+			FacesUtil.addSuccessMessage("Carro salvo com sucesso!");	
 		} catch (Exception e) {
 			e.printStackTrace();
 			FacesUtil.addErrorMessage("Erro desconhecido. Contatar o administrador");
@@ -79,6 +100,22 @@ public class CarroBean implements Serializable {
 
 	public List<ModeloCarro> getModelosCarros() {
 		return modelosCarros;
+	}
+
+	public List<Carro> getCarros() {
+		return carros;
+	}
+
+	public void setCarros(List<Carro> carros) {
+		this.carros = carros;
+	}
+
+	public Carro getCarroSelecionado() {
+		return carroSelecionado;
+	}
+
+	public void setCarroSelecionado(Carro carroSelecionado) {
+		this.carroSelecionado = carroSelecionado;
 	}
 
 }

@@ -29,4 +29,13 @@ public class CarroDAO implements Serializable{
 		return em.createQuery(jpql).getResultList();
 	}
 
+	public List<Carro> buscarTodos() {		
+		return this.findAll();
+	}
+
+	public void excluir(Carro carro) {
+		carro = em.find(Carro.class, carro.getCodigo());
+		em.remove(carro);		
+	}
+
 }

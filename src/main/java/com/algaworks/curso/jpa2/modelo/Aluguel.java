@@ -78,6 +78,7 @@ public class Aluguel {
 	}
 
 	@ManyToOne // Um carro pode ser alugado várias vezes
+	@JoinColumn(name="codigo_carro")
 	public Carro getCarro() {
 		return carro;
 	}
